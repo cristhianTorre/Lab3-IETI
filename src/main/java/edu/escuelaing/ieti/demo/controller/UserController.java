@@ -4,6 +4,7 @@ import edu.escuelaing.ieti.demo.data.User;
 import edu.escuelaing.ieti.demo.dto.UserDto;
 import edu.escuelaing.ieti.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,31 +22,36 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<User>> getAll() {
         //TODO implement this method using UserService
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(userService.all());
     }
 
     @GetMapping( "/{id}" )
     public ResponseEntity<User> findById( @PathVariable String id ) {
         //TODO implement this method using UserService
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id));
     }
 
 
     @PostMapping
-    public ResponseEntity<User> create( @RequestBody UserDto userDto ) {
+    public ResponseEntity<User> create( @RequestBody User user ) {
         //TODO implement this method using UserService
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(userService.create(user));
     }
 
     @PutMapping( "/{id}" )
-    public ResponseEntity<User> update( @RequestBody UserDto userDto, @PathVariable String id ) {
+    public ResponseEntity<User> update( @RequestBody User user, @PathVariable String id ) {
         //TODO implement this method using UserService
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(userService.update(user,id));
     }
 
     @DeleteMapping( "/{id}" )
     public ResponseEntity<Boolean> delete( @PathVariable String id ) {
         //TODO implement this method using UserService
-        return null;
+        try{
+            userService.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body((true));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.ordinal()).body((false));
+        }
     }
 }
