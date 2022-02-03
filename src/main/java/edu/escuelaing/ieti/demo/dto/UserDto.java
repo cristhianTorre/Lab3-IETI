@@ -5,6 +5,12 @@ public class UserDto {
     private String email;
     private String lastName;
 
+    public UserDto(String name, String email, String lastName){
+        this.name = name;
+        this.email = email;
+        this.lastName = lastName;
+    }
+
     public String getName() {
         return name;
     }

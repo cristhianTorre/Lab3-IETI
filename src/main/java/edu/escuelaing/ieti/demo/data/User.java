@@ -7,6 +7,14 @@ public class User {
     private String lastName;
     private String createdAt;
 
+    public User(String id, String name, String email, String lastName, String createdAt){
+        this.id = Id.valueOf(id);
+        this.name = name;
+        this.email = email;
+        this.lastName = lastName;
+        this.createdAt = createdAt;
+    }
+
     public Id getId() {
         return id;
     }
