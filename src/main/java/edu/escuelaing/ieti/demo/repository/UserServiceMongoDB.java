@@ -13,39 +13,41 @@ import java.util.Optional;
 public class UserServiceMongoDB implements UserService {
     private final UserRepository userRepository;
 
-    public UserServiceMongoDB(@Autowired UserRepository userRepository )
-    {
+    public UserServiceMongoDB(@Autowired UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public User create(User user )
-    {
+    public User create(User user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User findByIdentify(String id )
-    {
-        return userRepository.findByIdentify(id);
+    public User findByIdentify(String id) {
+        if (userRepository.findById(id).isPresent()) {
+            return userRepository.findById(id).get();
+        }
+        return null;
+
     }
 
     @Override
-    public List<User> all()
-    {
+    public List<User> all() {
         return userRepository.findAll();
     }
 
     @Override
-    public void deleteById( String id )
-    {
+    public void deleteById(String id) {
         userRepository.deleteById(id);
     }
 
     @Override
-    public User update(User userDto, String id )
-    {
-        return userRepository.update(userDto, id);
+    public User update(User userDto, String id) {
+        if(userRepository.findById(userDto.getId()).isPresent()){
+            userRepository.findById(id).get().setId(id);
+            return userRepository.findById(id).get();
+        }
+        return null;
     }
 
     @Override

@@ -10,11 +10,7 @@ import java.util.Optional;
 public interface UserRepository extends MongoRepository<User, String> {
 
 
-    User update(User userDto, String id);
+    //List<User> findUsersWithNameOrLastNameLike(String queryText);
 
-    User findByIdentify(String id);
-
-    List<User> findUsersWithNameOrLastNameLike(String queryText);
-
-    List<User> findUsersCreatedAfter(Date startDate);
+    //List<User> findUsersCreatedAfter(Date startDate);
 }
