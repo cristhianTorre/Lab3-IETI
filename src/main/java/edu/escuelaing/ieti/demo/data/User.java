@@ -1,25 +1,36 @@
 package edu.escuelaing.ieti.demo.data;
 
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+
+@Document
 public class User {
-    private Id id;
+    @Id
+    private String id;
     private String name;
+    @Indexed( unique = true)
     private String email;
     private String lastName;
     private String createdAt;
 
     public User(String id, String name, String email, String lastName, String createdAt){
-        this.id = Id.valueOf(id);
+        this.id = id;
         this.name = name;
         this.email = email;
         this.lastName = lastName;
         this.createdAt = createdAt;
     }
 
-    public Id getId() {
+    public User(){
+
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Id id) {
+    public void setId(String id) {
         this.id = id;
     }
 
