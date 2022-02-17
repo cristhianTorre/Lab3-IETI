@@ -49,7 +49,7 @@ public class UserServiceMongoDB implements UserService {
         }
         return null;
     }
-
+    /**
     @Override
     public List<User> findUsersWithNameOrLastNameLike(String queryText) {
         return userRepository.findUsersWithNameOrLastNameLike(queryText);
@@ -59,4 +59,5 @@ public class UserServiceMongoDB implements UserService {
     public List<User> findUsersCreatedAfter(Date startDate) {
         return userRepository.findUsersCreatedAfter(startDate);
     }
+    */
 }

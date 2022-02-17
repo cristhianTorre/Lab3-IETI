@@ -35,7 +35,7 @@ public class UserServiceHashMap implements UserService{
     public User update(User user, String id) {
         return usersHash.put(id,user);
     }
-
+    /**
     @Override
     public List<User> findUsersWithNameOrLastNameLike(String queryText) {
         ArrayList<User> lista= new ArrayList<>();
@@ -57,4 +57,5 @@ public class UserServiceHashMap implements UserService{
         }
         return lista;
     }
+    */
 }

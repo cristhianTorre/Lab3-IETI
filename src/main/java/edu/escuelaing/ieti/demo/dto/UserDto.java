@@ -2,6 +2,7 @@ package edu.escuelaing.ieti.demo.dto;
 
 public class UserDto {
     private String name;
+    private String password;
     private String email;
     private String lastName;
 
@@ -33,5 +34,13 @@ public class UserDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

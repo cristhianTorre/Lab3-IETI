@@ -55,7 +55,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.ordinal()).body((false));
         }
     }
-
+    /**
     @GetMapping("/{query}")
     public ResponseEntity<List<User>> findByNameOrLastname(@PathVariable String query){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findUsersWithNameOrLastNameLike(query));
@@ -65,4 +65,5 @@ public class UserController {
     public ResponseEntity<List<User>> findUsersCreatedAfter(Date startDate){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findUsersCreatedAfter(startDate));
     }
+    */
 }
