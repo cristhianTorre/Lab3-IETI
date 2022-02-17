@@ -1,9 +1,11 @@
 package edu.escuelaing.ieti.demo.data;
 
-import edu.escuelaing.ieti.demo.controller.auth.RoleEnum;
+import edu.escuelaing.ieti.demo.controller.RoleEnum;
+import edu.escuelaing.ieti.demo.dto.UserDto;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.List;
 
@@ -19,16 +21,17 @@ public class User {
     private String passwordHash;
     private List<RoleEnum> roles;
 
-    public User(String id, String name, String email, String lastName, String createdAt){
+    public User(String id, String name, String email, String lastName, String createdAt, UserDto userDto){
         this.id = id;
         this.name = name;
         this.email = email;
         this.lastName = lastName;
         this.createdAt = createdAt;
+        this.passwordHash = BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt());
     }
 
-    public User(){
-
+    public User(UserDto userDto){
+        this.passwordHash = BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt());
     }
 
     public String getId() {
@@ -85,5 +88,14 @@ public class User {
 
     public void setRoles(List<RoleEnum> roles) {
         this.roles = roles;
+    }
+
+    public void update(UserDto user) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.lastName = user.getLastName();
+        if (user.getPassword() != null) {
+            this.passwordHash = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        }
     }
 }

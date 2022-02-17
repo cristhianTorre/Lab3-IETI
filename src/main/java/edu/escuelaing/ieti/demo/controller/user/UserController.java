@@ -1,4 +1,4 @@
-package edu.escuelaing.ieti.demo.controller;
+package edu.escuelaing.ieti.demo.controller.user;
 
 import edu.escuelaing.ieti.demo.data.User;
 import edu.escuelaing.ieti.demo.dto.UserDto;
